@@ -3,21 +3,21 @@
 class EmployeeRoster {
     private array $employees = [];
 
-    public function addEmployee(Employee $employee) {
+    public function addEmployee($employee) {
         $this->employees[] = $employee;
-    }
-
-    public function deleteEmployee(int $index) {
-        if (isset($this->employees[$index])) {
-            unset($this->employees[$index]);
-            $this->employees = array_values($this->employees); 
-        }
     }
 
     public function getEmployees(): array {
         return $this->employees;
     }
+
+    public function deleteEmployee($index): bool {
+        if (isset($this->employees[$index])) {
+            array_splice($this->employees, $index, 1);
+            return true;
+        }
+        return false;
+    }
 }
 
 ?>
-
